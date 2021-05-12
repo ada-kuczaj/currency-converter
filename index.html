@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator walut</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" />
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <script defer src="js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header__text">Kalkulator walut</h1>
+    </header>
+
+    <main>
+        <form class="form js-form">
+            <fieldset class="form__fieldset">
+                <legend class="form__legend">Wpisz kwotę</legend>
+                <p>
+                    <input type="number" name="amount" step="0.01" min=0 class="form__field js-userInput"
+                        placeholder="0,0" required>
+                </p>
+            </fieldset>
+            <fieldset class="form__fieldset">
+                <legend class="form__legend">Przelicz z</legend>
+                <p>
+                    <select name="currencyIn" class="form__field js-currencyIn">
+                        <option value="NONE" selected>Wybierz walutę</option>
+                        <option value="EUR">EUR - Euro</option>
+                        <option value="USD">USD - Dolar amerykański</option>
+                        <option value="PLN">PLN - Złotówka polska</option>
+                    </select>
+                </p>
+            </fieldset>
+            <fieldset class="form__fieldset">
+                <legend class="form__legend">Przelicz na</legend>
+                <p>
+                    <select name="currencyOut" class="form__field js-currencyOut">
+                        <option value="NONE" selected>Wybierz walutę</option>
+                        <option value="EUR">EUR - Euro</option>
+                        <option value="USD">USD - Dolar amerykański</option>
+                        <option value="PLN">PLN - Złotówka polska</option>
+                    </select>
+                </p>
+            </fieldset>
+            <p>
+                <button class="form__button js-buttonCalculate">Przelicz</button>
+            </p>
+            <p>
+                <button class="form__button js-buttonClear" type="reset">Wyczyść</button>
+            </p>
+            <fieldset class="form__fieldset">
+                <legend class="form__legend">Wynik</legend>
+                <p>
+                    <strong class="js-outcome"></strong>
+                </p>
+            </fieldset>
+        </form>
+    </main>
+
+</body>
+
+</html>
