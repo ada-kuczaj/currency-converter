@@ -33,6 +33,8 @@ In the future, I also intend to supplement the project with an API, so that the 
 ## Demo
 Check out how it works :)
 
+https://ada-kuczaj.github.io/currency-converter/
+
 ![Website](https://github.com/ada-kuczaj/currency-converter/blob/main/images/websiteGif1.gif?raw=true)
 
 ## Technologies
