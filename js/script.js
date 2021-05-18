@@ -1,94 +1,90 @@
 {
+    const currencyInSelector = document.querySelector(".js-currencyIn");
+    const currencyOutSelector = document.querySelector(".js-currencyOut");
+
+    const resetWhenSameValues = (element) => {
+        if (currencyInSelector.value === currencyOutSelector.value) {
+            element.value = "NONE";
+        }
+    };
+
     const selectCurrency = () => {
-
-        const selectCurrencyIn = document.querySelector(".js-currencyIn");
-        const selectCurrencyOut = document.querySelector(".js-currencyOut");
-
-        selectCurrencyIn.addEventListener("input", () => {
-            if (selectCurrencyIn.value === selectCurrencyOut.value) {
-                selectCurrencyOut.value = "NONE";
-            }
+        currencyInSelector.addEventListener("input", () => {
+            resetWhenSameValues(currencyOutSelector);
         });
 
-        selectCurrencyOut.addEventListener("input", () => {
-            if (selectCurrencyIn.value === selectCurrencyOut.value) {
-                selectCurrencyIn.value = "NONE";
-            }
+        currencyOutSelector.addEventListener("input", () => {
+            resetWhenSameValues(currencyInSelector);
         });
-    }
+    };
     selectCurrency();
 
-    const getTargetAmount = () => {
-
-        const selectCurrencyIn = document.querySelector(".js-currencyIn");
-        const selectCurrencyOut = document.querySelector(".js-currencyOut");
-        const initialCurrency = selectCurrencyIn.value;
-        const finalCurrency = selectCurrencyOut.value;
+    const getCurrencyRate = () => {
         const rateEUR = 4.5654;
         const rateUSD = 3.7746;
 
-        switch (initialCurrency + ' ' + finalCurrency) {
-            case 'PLN EUR':
+        switch (currencyInSelector.value + " " + currencyOutSelector.value) {
+            case "PLN EUR":
                 return 1 / rateEUR;
 
-            case 'PLN USD':
+            case "PLN USD":
                 return 1 / rateUSD;
 
-            case 'EUR PLN':
+            case "EUR PLN":
                 return 1 * rateEUR;
 
-            case 'USD PLN':
+            case "USD PLN":
                 return 1 * rateUSD;
 
-            case 'USD EUR':
+            case "USD EUR":
                 return rateUSD / rateEUR;
 
-            case 'EUR USD':
+            case "EUR USD":
                 return rateEUR / rateUSD;
-
         }
-    }
-    getTargetAmount();
+    };
+    getCurrencyRate();
 
     const updateResultText = () => {
-
         let outcome = document.querySelector(".js-outcome");
         let userInput = document.querySelector(".js-userInput");
         let amount = userInput.value;
 
-        const selectCurrencyIn = document.querySelector(".js-currencyIn");
-        const selectCurrencyOut = document.querySelector(".js-currencyOut");
-        const initialCurrency = selectCurrencyIn.value;
-        const finalCurrency = selectCurrencyOut.value;
-
-        let rate = getTargetAmount(initialCurrency, finalCurrency,);
+        let rate = getCurrencyRate(
+            currencyInSelector.value,
+            currencyOutSelector.value
+        );
 
         result = amount * rate;
-        if (initialCurrency === "NONE" || finalCurrency === "NONE") {
+        if (
+            currencyInSelector.value === "NONE" ||
+            currencyOutSelector.value === "NONE"
+        ) {
             outcome.innerHTML = "Wybierz walutę do konwersji";
         } else {
-            outcome.innerHTML = `${amount} ${initialCurrency} = ${result.toFixed(2)} ${finalCurrency}`;
+            outcome.innerHTML = `${amount} ${currencyInSelector.value
+                } = ${result.toFixed(2)} ${currencyOutSelector.value}`;
         }
-    }
+    };
     updateResultText();
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        getTargetAmount();
+        getCurrencyRate();
         updateResultText();
-    }
+    };
 
     const clearForm = () => {
         let outcome = document.querySelector(".js-outcome");
         outcome.innerHTML = "   ";
-    }
+    };
 
-    const init = () => {        
+    const init = () => {
         const formElement = document.querySelector(".js-form");
         formElement.addEventListener("submit", onFormSubmit);
 
-        const buttonClear = document.querySelector(".js-buttonClear")
-        buttonClear.addEventListener("click", (clearForm));
-    }
+        const buttonClear = document.querySelector(".js-buttonClear");
+        buttonClear.addEventListener("click", clearForm);
+    };
     init();
 }
